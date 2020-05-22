@@ -22,11 +22,11 @@ chrome.contextMenus.onClicked.addListener(processSelected);
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         chrome.windows.create({
-            url : chrome.extension.getURL('popup.html') + "/wordmark/" + request.details.id,
+            url : chrome.extension.getURL('wordmark.html'),
             focused : true,
             type : "popup",
-            height: 330,
-            width: 350
+            height: 350,
+            width: 360
         });
     });
 
@@ -42,3 +42,10 @@ chrome.runtime.onMessage.addListener(
 //     height: 330,
 //     width: 350
 // });
+//
+// , function (win) {
+//     chrome.tabs.getAllInWindow(win.id, function(tabs){
+//         alert(JSON.stringify(tabs));
+//         chrome.tabs.executeScript(tabs[0].id, { file: "wordMarkInjector.js" });
+//     })
+// }

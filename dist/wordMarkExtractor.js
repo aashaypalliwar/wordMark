@@ -31,7 +31,8 @@ var extract = () => {
     return {
         id : id,
         path: path,
-        text: text
+        text: text,
+        time: Date.now()
     }
 }
 
