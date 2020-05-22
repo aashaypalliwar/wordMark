@@ -17,7 +17,18 @@ chrome.contextMenus.create({
     contexts:["selection"]
 });
 
-chrome.contextMenus.onClicked.addListener(processSelected) ;
+chrome.contextMenus.onClicked.addListener(processSelected);
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        chrome.windows.create({
+            url : chrome.extension.getURL('popup.html') + "/wordmark/" + request.details.id,
+            focused : true,
+            type : "popup",
+            height: 330,
+            width: 350
+        });
+    });
 
 
 
