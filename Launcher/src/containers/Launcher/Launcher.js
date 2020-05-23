@@ -7,6 +7,8 @@ import LauncherWMRow from "../../components/LauncherWMRow";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import LauncherBSRow from "../../components/LauncherBSRow";
+import DeleteWMCategory from "../../components/DeleteWMCategory";
+import DeleteBSCategory from "../../components/DeleteBSCategory";
 
 
 
@@ -168,14 +170,19 @@ class Launcher extends Component {
             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
                 <Accordion >
                     <Card>
-                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
-                            {category}
+                        <Accordion.Toggle as={Card.Header}  eventKey="0">
+                            <span style={accordionStyle}>{category}</span>
+                            {!isNotEmpty ?
+                                null:
+                                <DeleteWMCategory category={category}  set={this.indirectSetState} appState={this.state} />
+                            }
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
                                 {
                                     !isNotEmpty ?
                                         <p>No wordMarks under this category yet</p> :
+                                        <>
                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                             <thead style={theadStyle}>
                                             <tr>
@@ -194,6 +201,7 @@ class Launcher extends Component {
                                             })}
                                             </tbody>
                                         </Table>
+                                    </>
                                 }
                             </Card.Body>
                         </Accordion.Collapse>
@@ -208,14 +216,19 @@ class Launcher extends Component {
             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
                 <Accordion >
                     <Card>
-                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
-                            {category}
+                        <Accordion.Toggle as={Card.Header}  eventKey="0">
+                            <span style={accordionStyle}>{category}</span>
+                            {!isNotEmpty ?
+                                null:
+                                <DeleteBSCategory category={category} set={this.indirectSetState} appState={this.state} />
+                            }
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
                                 {
                                     !isNotEmpty ?
                                         <p>No wordMarks under this category yet</p> :
+                                        <>
                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                             <thead style={theadStyle}>
                                             <tr>
@@ -233,6 +246,7 @@ class Launcher extends Component {
                                             })}
                                             </tbody>
                                         </Table>
+                                        </>
                                 }
 
                             </Card.Body>
@@ -288,14 +302,21 @@ class Launcher extends Component {
                             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
                                 <Accordion defaultActiveKey="0">
                                     <Card>
-                                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
-                                            General
+                                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                                            <span style={accordionStyle}>General</span>
+                                            {
+                                                (JSON.stringify(this.state.browserStateInfo["General"]) === "[]" || this.state.browserStateInfo["General"] === null || this.state.browserStateInfo["General"] === undefined) ?
+                                                    null:
+                                                    <DeleteBSCategory category="General"  set={this.indirectSetState} appState={this.state} />
+                                            }
+
                                         </Accordion.Toggle>
                                         <Accordion.Collapse eventKey="0">
                                             <Card.Body>
                                                 {
                                                     (JSON.stringify(this.state.browserStateInfo["General"]) === "[]" || this.state.browserStateInfo["General"] === null || this.state.browserStateInfo["General"] === undefined) ?
                                                         <p>No browser sessions saved under this category yet</p> :
+                                                        <>
                                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                                             <thead >
                                                             <tr>
@@ -313,6 +334,7 @@ class Launcher extends Component {
                                                             })}
                                                             </tbody>
                                                         </Table>
+                                                    </>
                                                 }
                                             </Card.Body>
                                         </Accordion.Collapse>
@@ -349,14 +371,23 @@ class Launcher extends Component {
                             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
                                 <Accordion defaultActiveKey="0">
                                     <Card>
-                                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
-                                            General
+                                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                                            <span style={accordionStyle}>General</span>
+
+                                            {
+                                                (JSON.stringify(this.state.wordMarkInfo["General"]) === "[]" || this.state.wordMarkInfo["General"] === null || this.state.wordMarkInfo["General"] === undefined) ?
+                                                null:
+                                                    <DeleteWMCategory category="General"  set={this.indirectSetState} appState={this.state} />
+
+                                            }
+
                                         </Accordion.Toggle>
                                         <Accordion.Collapse eventKey="0">
                                             <Card.Body>
                                                 {
                                                     (JSON.stringify(this.state.wordMarkInfo["General"]) === "[]" || this.state.wordMarkInfo["General"] === null || this.state.wordMarkInfo["General"] === undefined) ?
                                                         <p>No wordMarks saved under this category yet</p> :
+                                                        <>
                                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                                             <thead style={theadStyle}>
                                                             <tr>
@@ -375,6 +406,7 @@ class Launcher extends Component {
                                                             })}
                                                             </tbody>
                                                         </Table>
+                                                    </>
                                                 }
                                             </Card.Body>
                                         </Accordion.Collapse>

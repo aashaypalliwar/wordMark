@@ -20,3 +20,15 @@ th {
   margin-bottom: 0 !important;
   text-align: center;
 }
+
+.deleteAll {
+  display: inline-block !important;
+  float: right !important;
+  cursor: pointer;
+}
+
+.delete {
+  display: inline-block !important;
+  cursor: pointer;
+  /*float: right !important;*/
+}
