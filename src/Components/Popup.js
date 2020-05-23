@@ -79,7 +79,7 @@ const Popup = (props) => {
                         }
                         else{
                             sessionCategory = getRefValue(categoryOther);
-                            alert(sessionCategory);
+                            //alert(sessionCategory);
                         }
 
                         if(obj.session !== null && obj.session !== undefined){
@@ -111,24 +111,24 @@ const Popup = (props) => {
                                 alert("saved");
                             });
                         }
-                        alert("1 categories before updating to newer state");
-                        alert(JSON.stringify(categories));
+                        //alert("1 categories before updating to newer state");
+                        //alert(JSON.stringify(categories));
 
                         let newCategories;
                         let oldCategories = clone(categories);
                         if(isOther){
                             newCategories = [...oldCategories, sessionCategory];
-                            alert("2 new categories");
-                            alert(JSON.stringify(newCategories));
+                            //alert("2 new categories");
+                            //alert(JSON.stringify(newCategories));
                         }else{
                             newCategories = oldCategories;
                         }
                         chrome.storage.sync.set({categories: newCategories}, function () {
-                            alert("object.categories after saving");
-                            alert(JSON.stringify(newCategories));
+                            //alert("object.categories after saving");
+                            //alert(JSON.stringify(newCategories));
                             setCategories(newCategories);
-                            alert("categories after saving");
-                            alert(JSON.stringify(categories));
+                            //alert("categories after saving");
+                            //alert(JSON.stringify(categories));
                             setOther(false);
                             setSaving(false);
                             setClicked(false);
@@ -150,7 +150,12 @@ const Popup = (props) => {
         //     });
         // });
 
-        alert(JSON.stringify(categories));
+        //alert(JSON.stringify(categories));
+
+        chrome.tabs.create({
+            url: chrome.extension.getURL('launcher.html')
+        });
+
 
 
     }
