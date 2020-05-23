@@ -189,7 +189,7 @@ class Launcher extends Component {
                                             <tbody>
                                             {this.state.wordMarkInfo[category].map( (wm, index) => {
                                                 return (
-                                                    <LauncherWMRow key={wm.id} wm={wm} set={this.indirectSetState} index={index} wms={this.state.wordMarkInfo[category]} />
+                                                    <LauncherWMRow key={wm.id} wm={wm} set={this.indirectSetState} index={index} appState={this.state} wms={this.state.wordMarkInfo[category]} />
                                                 );
                                             })}
                                             </tbody>
@@ -228,7 +228,7 @@ class Launcher extends Component {
                                             <tbody>
                                             {this.state.browserStateInfo[category].map( (bs, index) => {
                                                 return (
-                                                    <LauncherBSRow key={bs.date} bs={bs} set={this.indirectSetState} index={index} bss={this.state.browserStateInfo[category]} />
+                                                    <LauncherBSRow key={bs.date} bs={bs} set={this.indirectSetState} index={index} appState={this.state} bss={this.state.browserStateInfo[category]} />
                                                 );
                                             })}
                                             </tbody>
@@ -308,7 +308,7 @@ class Launcher extends Component {
                                                             <tbody>
                                                             {this.state.browserStateInfo["General"].map( (bs, index) => {
                                                                 return (
-                                                                    <LauncherBSRow key={bs.date} bs={bs} set={this.indirectSetState} index={index} bss={this.state.browserStateInfo["General"]} />
+                                                                    <LauncherBSRow key={bs.date} bs={bs} set={this.indirectSetState} index={index} appState={this.state} bss={this.state.browserStateInfo["General"]} />
                                                                 );
                                                             })}
                                                             </tbody>
@@ -370,7 +370,7 @@ class Launcher extends Component {
                                                             <tbody>
                                                             {this.state.wordMarkInfo["General"].map( (wm, index) => {
                                                                 return (
-                                                                    <LauncherWMRow key={wm.id} wm={wm} set={this.indirectSetState} index={index} wms={this.state.wordMarkInfo["General"]} />
+                                                                    <LauncherWMRow key={wm.id} wm={wm} set={this.indirectSetState} index={index} appState={this.state} wms={this.state.wordMarkInfo["General"]} />
                                                                 );
                                                             })}
                                                             </tbody>

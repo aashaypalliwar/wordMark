@@ -90,7 +90,8 @@ const Popup = (props) => {
                             obj.session[sessionCategory] = [...obj.session[sessionCategory] , {
                                 note: sessionNote,
                                 tabs: tabInfo,
-                                date: Date.now()
+                                date: Date.now(),
+				category: sessionCategory
                             }];
                             chrome.storage.sync.set({session: obj.session}, function () {
                                 // setSaving(false);
@@ -104,7 +105,8 @@ const Popup = (props) => {
                                 [sessionCategory]: [{
                                     note: sessionNote,
                                     tabs: tabInfo,
-                                    date: Date.now()
+                                    date: Date.now(),
+				    category: sessionCategory
                                 }]
                             }
                             chrome.storage.sync.set({session: session}, function () {

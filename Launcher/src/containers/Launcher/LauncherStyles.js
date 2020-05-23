@@ -136,11 +136,11 @@ export const navLink = {
 export const accordionStyle = {
     fontSize: "1.1rem",
     cursor: "pointer",
-    color: "#ffffff",
+    //color: "#ffffff",
     //border: "medium solid #07285c",
-    //backgroundColor: "#07285c",
-    backgroundColor: "#07285c",
-    fontWeight: "bold"
+    //color: "#07285c",
+    //backgroundColor: "#afdaff",
+    //fontWeight: "bold"
 
 }
 
