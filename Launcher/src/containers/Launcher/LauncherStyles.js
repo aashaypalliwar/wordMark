@@ -1,15 +1,26 @@
 export const tableStyle = {
-    marginTop: '1rem',
+    marginTop: '0.2rem',
     padding: '1rem'
 }
 
 export const headingStyle = {
-    fontSize:"1.4rem",
+    fontSize:"1.5rem",
     paddingBottom: "0",
     paddingLeft: "0",
     paddingRight: "0",
     textAlign:"center",
     marginTop:"1rem"
+}
+
+export const subHeadingStyle = {
+    fontSize:"1.3rem",
+    paddingBottom: "0",
+    paddingLeft: "0",
+    paddingRight: "0",
+    //textAlign:"center",
+    marginTop:"1rem",
+    marginBottom:"0.7rem",
+    color: "#07285c"
 }
 
 export const breadStyle = {
@@ -22,11 +33,20 @@ export const breadStyle = {
 }
 
 export const textStyle = {
-    fontSize:"1.2rem",
+    fontSize:"0.75rem",
     paddingBottom: "0",
     paddingLeft: "0",
     paddingRight: "0",
     textAlign:"center",
+    marginTop:"1rem"
+}
+
+export const mutedTextStyle = {
+    fontSize:"0.8rem",
+    paddingBottom: "0",
+    paddingLeft: "0",
+    paddingRight: "0",
+    //textAlign:"center",
     marginTop:"1rem"
 }
 
@@ -40,10 +60,13 @@ export const bodyTextStyle = {
 }
 
 export const theadStyle = {
-    fontSize:"1rem",
-    paddingBottom: "0",
+    fontSize:"1.1rem",
     paddingLeft: "0",
     paddingRight: "0",
+    paddingTop: "0.2rem",
+    paddingBottom: "0.2rem",
+    marginTop: 0,
+    marginBottom: 0,
     textAlign:"center"
 }
 
@@ -71,6 +94,10 @@ export const descriptionStyle = {
     fontSize:"1rem",
     paddingLeft: "0",
     paddingRight: "0",
+    paddingTop: "0.1rem",
+    paddingBottom: "0.1rem",
+    marginTop: 0,
+    marginBottom: 0,
     textAlign:"center"
 }
 
@@ -78,6 +105,10 @@ export const deleteStyle = {
     fontSize:"1rem",
     paddingLeft: "0",
     paddingRight: "0",
+    paddingTop: "0.1rem",
+    paddingBottom: "0.1rem",
+    marginTop: 0,
+    marginBottom: 0,
     textAlign:"center",
     color: "red",
     cursor: "pointer"
@@ -87,6 +118,10 @@ export const whiteStyle = {
     fontSize:"1rem",
     paddingLeft: "0",
     paddingRight: "0",
+    paddingTop: "0.1rem",
+    paddingBottom: "0.1rem",
+    marginTop: 0,
+    marginBottom: 0,
     textAlign:"center",
     color: "green",
     cursor: "pointer"
@@ -96,5 +131,16 @@ export const navLink = {
     fontSize: "1rem",
     color: "#ededed",
     fontWeight: "300"
+}
+
+export const accordionStyle = {
+    fontSize: "1.1rem",
+    cursor: "pointer",
+    color: "#ffffff",
+    //border: "medium solid #07285c",
+    //backgroundColor: "#07285c",
+    backgroundColor: "#07285c",
+    fontWeight: "bold"
+
 }
 

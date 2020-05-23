@@ -2,7 +2,7 @@
 import { clone } from 'ramda'
 import React, { Component } from 'react';
 import {Button, Col, Container, Form, Row, Table} from "react-bootstrap";
-import { headingStyle, textStyle, theadStyle, categoryStyle, descriptionStyle, bodyTextStyle, breadStyle, linkStyle, HeadLinkStyle } from "./LauncherStyles";
+import { headingStyle, accordionStyle, textStyle, theadStyle, subHeadingStyle, categoryStyle, descriptionStyle, bodyTextStyle, breadStyle, linkStyle, HeadLinkStyle } from "./LauncherStyles";
 import LauncherWMRow from "../../components/LauncherWMRow";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
@@ -157,7 +157,7 @@ class Launcher extends Component {
 
     loading = (item) => (
         <Row>
-            <Col md={ {span: 4, offset: 4}} lg={ {span: 6, offset: 3}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={textStyle}>
+            <Col md={ {span: 4, offset: 4}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={textStyle}>
                 <span>Loading {item}..</span>
             </Col>
         </Row>
@@ -166,9 +166,9 @@ class Launcher extends Component {
     wmCategory = (category, isNotEmpty) => (
         <Row>
             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
-                <Accordion defaultActiveKey="0">
+                <Accordion >
                     <Card>
-                        <Accordion.Toggle as={Card.Header} style={{"cursor": "pointer"}} eventKey="0">
+                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
                             {category}
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
@@ -176,7 +176,7 @@ class Launcher extends Component {
                                 {
                                     !isNotEmpty ?
                                         <p>No wordMarks under this category yet</p> :
-                                        <Table responsive bordered style={{"marginTop": "1rem"}}>
+                                        <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                             <thead style={theadStyle}>
                                             <tr>
                                                 <th>Note</th>
@@ -206,9 +206,9 @@ class Launcher extends Component {
     bsCategory = (category, isNotEmpty) => (
         <Row>
             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
-                <Accordion defaultActiveKey="0">
+                <Accordion >
                     <Card>
-                        <Accordion.Toggle as={Card.Header} style={{"cursor": "pointer"}} eventKey="0">
+                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
                             {category}
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
@@ -216,7 +216,7 @@ class Launcher extends Component {
                                 {
                                     !isNotEmpty ?
                                         <p>No wordMarks under this category yet</p> :
-                                        <Table responsive bordered style={{"marginTop": "1rem"}}>
+                                        <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                             <thead style={theadStyle}>
                                             <tr>
                                                 <th>Note</th>
@@ -243,22 +243,9 @@ class Launcher extends Component {
         </Row>
     );
 
-    // wmTable = () => {
-    //     let wmInfo = clone(this.state.wordMarkInfo);
-    //     for (let category in wmInfo) {
-    //         if (Object.prototype.hasOwnProperty.call(wmInfo, category)) {
-    //
-    //         }
-    //     }
-    // }
-    //
-    // bsTable = () => {
-    //
-    // }
-
     emptyPage = (item) => (
         <Row>
-            <Col md={ {span: 4, offset: 4}} lg={ {span: 6, offset: 3}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={textStyle}>
+            <Col md={ {span: 4, offset: 4}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={textStyle}>
                 {"Your " + item + " will appear here."}
             </Col>
         </Row>
@@ -269,8 +256,24 @@ class Launcher extends Component {
         return (
             <Container>
                 <Row>
-                    <Col md={ {span: 4, offset: 4}} lg={ {span: 6, offset: 3}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={headingStyle}>
+                    <Col md={ {span: 4, offset: 4}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={headingStyle}>
                         WordMark Launcher
+                        <hr
+                            style={{
+                                color: "#07285c",
+                                paddingTop: 0,
+                                paddingBottom: 0,
+                                marginTop: 0,
+                                marginBottom: 0,
+                                backgroundColor: "#07285c",
+                                height: 2
+                            }}
+                        />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={ {span: 4, offset: 4}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={subHeadingStyle}>
+                        Browser Sessions
                     </Col>
                 </Row>
 
@@ -285,7 +288,7 @@ class Launcher extends Component {
                             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
                                 <Accordion defaultActiveKey="0">
                                     <Card>
-                                        <Accordion.Toggle as={Card.Header} style={{"cursor": "pointer"}} eventKey="0">
+                                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
                                             General
                                         </Accordion.Toggle>
                                         <Accordion.Collapse eventKey="0">
@@ -293,8 +296,8 @@ class Launcher extends Component {
                                                 {
                                                     (JSON.stringify(this.state.browserStateInfo["General"]) === "[]" || this.state.browserStateInfo["General"] === null || this.state.browserStateInfo["General"] === undefined) ?
                                                         <p>No browser sessions saved under this category yet</p> :
-                                                        <Table responsive bordered style={{"marginTop": "1rem"}}>
-                                                            <thead style={theadStyle}>
+                                                        <Table responsive bordered style={{"marginTop": "0.2rem"}}>
+                                                            <thead >
                                                             <tr>
                                                                 <th>Note</th>
                                                                 <th>Date</th>
@@ -329,6 +332,12 @@ class Launcher extends Component {
                         : null
                 }
 
+                <Row>
+                    <Col md={ {span: 4, offset: 4}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={subHeadingStyle}>
+                        WordMarks
+                    </Col>
+                </Row>
+
                 {
                     this.state.wmLoad === "loading" ? this.loading("WordMarks") : null
                 }
@@ -340,7 +349,7 @@ class Launcher extends Component {
                             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
                                 <Accordion defaultActiveKey="0">
                                     <Card>
-                                        <Accordion.Toggle as={Card.Header} style={{"cursor": "pointer"}} eventKey="0">
+                                        <Accordion.Toggle as={Card.Header} style={accordionStyle} eventKey="0">
                                             General
                                         </Accordion.Toggle>
                                         <Accordion.Collapse eventKey="0">
@@ -348,7 +357,7 @@ class Launcher extends Component {
                                                 {
                                                     (JSON.stringify(this.state.wordMarkInfo["General"]) === "[]" || this.state.wordMarkInfo["General"] === null || this.state.wordMarkInfo["General"] === undefined) ?
                                                         <p>No wordMarks saved under this category yet</p> :
-                                                        <Table responsive bordered style={{"marginTop": "1rem"}}>
+                                                        <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                                             <thead style={theadStyle}>
                                                             <tr>
                                                                 <th>Note</th>
