@@ -1,6 +1,6 @@
 /*global chrome*/
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {categoryStyle, whiteStyle, descriptionStyle, textStyle, deleteStyle, linkStyle} from "../containers/Launcher/LauncherStyles";
+import {categoryStyle, wmTextStyle, whiteStyle, descriptionStyle, textStyle, deleteStyle, linkStyle} from "../containers/Launcher/LauncherStyles";
 import React, {useState} from "react";
 import { clone } from "ramda"
 import PopUpAlert from "./PopUpAlert";
@@ -35,10 +35,10 @@ const LauncherWMRow = (props) => {
         let wmObj = clone(props.appState.wordMarkInfo);
         let wmCategories = clone(props.appState.wmCategories);
         wmObj[props.wm.category] = wms;
-        alert(JSON.stringify(wmObj));
-        alert(JSON.stringify(wms));
-        alert(JSON.stringify(props.wm));
-        alert(JSON.stringify(props.appState));
+        //alert(JSON.stringify(wmObj));
+        //alert(JSON.stringify(wms));
+        //alert(JSON.stringify(props.wm));
+        //alert(JSON.stringify(props.appState));
 
         chrome.storage.sync.set({wordMark : wmObj }, () => {
             if(props.wm.category !== "General" && JSON.stringify(wms) === "[]"){
@@ -63,11 +63,11 @@ const LauncherWMRow = (props) => {
     return (
         <>
             <tr>
-                <td style={descriptionStyle}>{props.wm.note}</td>
-                <td style={descriptionStyle}>{
-                    props.wm.text.length <= 20 ?
-                    props.wm.text : props.wm.text.substring(0,20) + ".."}</td>
-                <td style={descriptionStyle}>{(new Date(props.wm.time)).toDateString()}</td>
+                <td style={descriptionStyle}>{(props.wm.note === "" || props.wm.note === undefined)  ? "-" : props.wm.note}</td>
+                <td style={wmTextStyle}>{
+                    props.wm.text.length <= 200 ?
+                    props.wm.text : props.wm.text.substring(0,200) + ".."}</td>
+                <td style={descriptionStyle}>{(new Date(props.wm.time)).toISOString().substring(0,10)}</td>
                 <td style={whiteStyle} onClick={viewHandler}>Visit</td>
                 {/*<td style={deleteStyle} onClick={triggerDeleteModal}>Delete</td>*/}
                 <td onClick={triggerDeleteModal} style={{"textAlign" : "center", "padding" : "0" }}>

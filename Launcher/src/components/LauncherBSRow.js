@@ -2,9 +2,6 @@
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {categoryStyle, whiteStyle, descriptionStyle, textStyle, deleteStyle, linkStyle} from "../containers/Launcher/LauncherStyles";
 import React, {useState} from "react";
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import ErrorAlert from "./ErrorAlert";
 import PopUpAlert from "./PopUpAlert";
 import { clone } from "ramda"
 
@@ -39,10 +36,10 @@ const LauncherBSRow = (props) => {
         let sessionObj = clone(props.appState.browserStateInfo);
         let bsCategories = clone(props.appState.bsCategories);
         sessionObj[props.bs.category] = bss;
-        alert(JSON.stringify(sessionObj));
-        alert(JSON.stringify(bss));
-        alert(JSON.stringify(props.bs));
-        alert(JSON.stringify(props.appState));
+        //alert(JSON.stringify(sessionObj));
+        //alert(JSON.stringify(bss));
+        //alert(JSON.stringify(props.bs));
+        //alert(JSON.stringify(props.appState));
 
         chrome.storage.sync.set({session : sessionObj }, () => {
             if(props.bs.category !== "General" && JSON.stringify(bss) === "[]"){
@@ -68,8 +65,8 @@ const LauncherBSRow = (props) => {
         // showRow ?
         <>
             <tr>
-                <td style={descriptionStyle}>{props.bs.note}</td>
-                <td style={descriptionStyle}>{(new Date(props.bs.date)).toDateString()}</td>
+                <td style={descriptionStyle}>{(props.bs.note === "" || props.bs.note === undefined)  ? "-" : props.bs.note}</td>
+                <td style={descriptionStyle}>{(new Date(props.bs.date)).toISOString().substring(0,10)}</td>
                 <td style={whiteStyle} onClick={viewHandler}>Visit</td>
                 {/*<td style={deleteStyle} onClick={triggerDeleteModal}>Delete</td>*/}
                 <td onClick={triggerDeleteModal} style={{"textAlign" : "center", "padding" : "0" }}>

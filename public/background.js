@@ -27,11 +27,11 @@ chrome.runtime.onMessage.addListener(
         if(request.message === "Fill Information"){
             chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
                 request.details.url = tabs[0].url;
-                alert(JSON.stringify(request.details));
-                alert("tabs:-");
-                alert(JSON.stringify(tabs));
+                //alert(JSON.stringify(request.details));
+                //alert("tabs:-");
+                //alert(JSON.stringify(tabs));
                 chrome.storage.sync.set({temporary: request.details }, function () {
-                    alert("saved temporary");
+                    //alert("saved temporary");
                     chrome.windows.create({
                         url : chrome.extension.getURL('wordmark.html'),
                         focused : true,
@@ -49,8 +49,8 @@ chrome.runtime.onMessage.addListener(
             //response({});
         }
         else if(request.message === "Open WordMark"){
-            alert("wordmark");
-            alert(JSON.stringify(request.wm));
+            //alert("wordmark");
+            //alert(JSON.stringify(request.wm));
             let { path, url, id } = request.wm;
             chrome.tabs.create({ url: url }, function (tab) {
                 chrome.tabs.executeScript(tab.id, { file: "jquery-3.5.1.min.js" }, function() {
@@ -84,7 +84,7 @@ chrome.runtime.onMessage.addListener(
 //
 // , function (win) {
 //     chrome.tabs.getAllInWindow(win.id, function(tabs){
-//         alert(JSON.stringify(tabs));
+//         //alert(JSON.stringify(tabs));
 //         chrome.tabs.executeScript(tabs[0].id, { file: "wordMarkInjector.js" });
 //     })
 // }

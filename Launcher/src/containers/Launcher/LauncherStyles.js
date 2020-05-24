@@ -92,13 +92,24 @@ export const HeadLinkStyle = {
 
 export const descriptionStyle = {
     fontSize:"1rem",
-    paddingLeft: "0",
-    paddingRight: "0",
+    paddingLeft: "0.7rem",
+    paddingRight: "0.7rem",
     paddingTop: "0.1rem",
     paddingBottom: "0.1rem",
     marginTop: 0,
     marginBottom: 0,
     textAlign:"center"
+}
+
+export const wmTextStyle = {
+    fontSize:"1rem",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
+    marginTop: 0,
+    marginBottom: 0,
+    textAlign: "justify"
 }
 
 export const deleteStyle = {

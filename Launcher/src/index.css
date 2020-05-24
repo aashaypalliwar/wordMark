@@ -25,10 +25,12 @@ th {
   display: inline-block !important;
   float: right !important;
   cursor: pointer;
+  padding-top: 0.25rem;
 }
 
 .delete {
   display: inline-block !important;
   cursor: pointer;
+  padding-top: 0.25rem;
   /*float: right !important;*/
 }

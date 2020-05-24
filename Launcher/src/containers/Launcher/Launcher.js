@@ -81,7 +81,7 @@ class Launcher extends Component {
 
         chrome.storage.sync.get("wmCategories", (obj) => {
             if(obj.wmCategories === null || obj.wmCategories === undefined ) {
-                alert("line46");
+                //alert("line46");
                 wmCategoriesLoad = "loaded";
             }
             else {
@@ -96,7 +96,7 @@ class Launcher extends Component {
 
         chrome.storage.sync.get("categories",  (obj) => {
             if(obj.categories === null || obj.categories === undefined ) {
-                alert("line46");
+                //alert("line46");
                 bsCategoriesLoad = "loaded";
             }
             else {
@@ -108,54 +108,11 @@ class Launcher extends Component {
                 bsCategoriesLoad: "loaded"
             })
         });
-
-        // console.log("inside cdm");
-        // console.log("printing state", this.state);
-        // axios.get('/api/admin/users', { withCredentials: true})
-        //     .then((response) => {
-        //         if(response.status === 200){
-        //             console.log(response);
-        //             console.log("fetched user info")
-        //             this.setState({userInfo: response.data.allUsers, userLoad: "loaded"})
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         console.log("Couldnot fetch user data")
-        //     })
-        // axios.get('/api/admin/suborgs', { withCredentials: true})
-        //     .then((response) => {
-        //         if(response.status === 200){
-        //             console.log(response);
-        //             console.log("fetched  suborgs info")
-        //             this.setState({suborgInfo: response.data.allSuborgs, suborgLoad: "loaded"})
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         //throw error
-        //         console.log("Couldnot fetch suborg data")
-        //     })
-        // axios.get('/api/admin/urls', { withCredentials: true})
-        //     .then((response) => {
-        //         if(response.status === 200){
-        //             console.log(response);
-        //             console.log("fetched  url info")
-        //             this.setState({URLInfo: response.data.allURLs, URLLoad: "loaded"})
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         //throw error
-        //         console.log("Couldnot fetch url data")
-        //     })
     }
 
     indirectSetState = (newState) => {
         this.setState(newState);
     }
-
-    displayState = () => console.log(this.state);
 
     loading = (item) => (
         <Row>
@@ -186,11 +143,11 @@ class Launcher extends Component {
                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                             <thead style={theadStyle}>
                                             <tr>
-                                                <th>Note</th>
-                                                <th>Text</th>
-                                                <th>Date</th>
-                                                <th>Visit</th>
-                                                <th>Action</th>
+                                                <th width="25%">Remark</th>
+                                                <th width="40%">Text</th>
+                                                <th width="17%">Date</th>
+                                                <th width="9%">Visit</th>
+                                                <th width="9%">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -232,10 +189,10 @@ class Launcher extends Component {
                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                             <thead style={theadStyle}>
                                             <tr>
-                                                <th>Note</th>
-                                                <th>Date</th>
-                                                <th>Visit</th>
-                                                <th>Action</th>
+                                                <th width="45%">Remark</th>
+                                                <th width="20%">Date</th>
+                                                <th width="20%">Visit</th>
+                                                <th width="15%">Delete</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -300,7 +257,7 @@ class Launcher extends Component {
                         :
                         <Row>
                             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
-                                <Accordion defaultActiveKey="0">
+                                <Accordion >
                                     <Card>
                                         <Accordion.Toggle as={Card.Header} eventKey="0">
                                             <span style={accordionStyle}>General</span>
@@ -320,10 +277,10 @@ class Launcher extends Component {
                                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                                             <thead >
                                                             <tr>
-                                                                <th>Note</th>
-                                                                <th>Date</th>
-                                                                <th>Visit</th>
-                                                                <th>Delete</th>
+                                                                <th width="45%">Remark</th>
+                                                                <th width="20%">Date</th>
+                                                                <th width="20%">Visit</th>
+                                                                <th width="15%">Delete</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -369,7 +326,7 @@ class Launcher extends Component {
                         :
                         <Row>
                             <Col md={ {span: 10, offset: 1}} lg={ {span: 10, offset: 1}} sm={ {span: 10, offset:1}}  xs={ {span: 10, offset:1}} >
-                                <Accordion defaultActiveKey="0">
+                                <Accordion>
                                     <Card>
                                         <Accordion.Toggle as={Card.Header} eventKey="0">
                                             <span style={accordionStyle}>General</span>
@@ -391,11 +348,11 @@ class Launcher extends Component {
                                                         <Table responsive bordered style={{"marginTop": "0.2rem"}}>
                                                             <thead style={theadStyle}>
                                                             <tr>
-                                                                <th>Note</th>
-                                                                <th>Text</th>
-                                                                <th>Date</th>
-                                                                <th>Visit</th>
-                                                                <th>Action</th>
+                                                                <th width="25%">Remark</th>
+                                                                <th width="40%">Text</th>
+                                                                <th width="17%">Date</th>
+                                                                <th width="9%">Visit</th>
+                                                                <th width="9%">Action</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>

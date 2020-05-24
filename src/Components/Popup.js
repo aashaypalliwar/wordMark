@@ -4,12 +4,14 @@ import { Col, Container, Row, Form } from "react-bootstrap";
 import  Button  from "react-bootstrap/Button";
 import { clone } from 'ramda';
 import {headingStyle, textStyle} from "./PopupStyles";
+import SuccessAlert from "./SuccessAlert";
 
 const Popup = (props) => {
     const [ isSaving, setSaving ] = useState(false);
     const [ isClicked, setClicked ] = useState(false);
     const [ categories, setCategories ] = useState([]);
     const [ isOther, setOther ] = useState(false);
+    const [ isSuccess, setSuccess ] = useState(false);
     let note = useRef();
     let category = useRef();
     let categoryOther = useRef();
@@ -27,18 +29,6 @@ const Popup = (props) => {
             return ref.current.value;
         }
     }
-
-    // let getCategories = () => {
-    //     if(categories !== null || categories !== undefined) {
-    //         let options = [];
-    //         categories.map((category, index) => {
-    //             options.push( <option key={index}>{category}</option> );
-    //         })
-    //         return options;
-    //     }else{
-    //         return null;
-    //     }
-    // }
 
     let categoryHandler = () => {
         if(category.current.value === "Other"){
@@ -91,12 +81,13 @@ const Popup = (props) => {
                                 note: sessionNote,
                                 tabs: tabInfo,
                                 date: Date.now(),
-				category: sessionCategory
+				                category: sessionCategory
                             }];
                             chrome.storage.sync.set({session: obj.session}, function () {
                                 // setSaving(false);
                                 // setClicked(false);
-                                alert("saved");
+                                //alert("saved");
+                                //setSuccess(true);
                             });
                         }
                         else{
@@ -110,7 +101,8 @@ const Popup = (props) => {
                                 }]
                             }
                             chrome.storage.sync.set({session: session}, function () {
-                                alert("saved");
+                                //alert("saved");
+                                //setSuccess(true);
                             });
                         }
                         //alert("1 categories before updating to newer state");
@@ -134,7 +126,7 @@ const Popup = (props) => {
                             setOther(false);
                             setSaving(false);
                             setClicked(false);
-
+                            setSuccess(true);
                         });
 
                     });
@@ -144,22 +136,9 @@ const Popup = (props) => {
     }
 
     let launchHandler = () => {
-
-        // chrome.storage.sync.get("session", function (obj) {
-        //     alert(JSON.stringify(obj));
-        //     chrome.windows.create({
-        //         url: obj.session.open[0].tabs
-        //     });
-        // });
-
-        //alert(JSON.stringify(categories));
-
         chrome.tabs.create({
             url: chrome.extension.getURL('launcher.html')
         });
-
-
-
     }
 
     return (
@@ -181,18 +160,26 @@ const Popup = (props) => {
                 </Col>
             </Row>
             {
+                isSuccess ?
+                <Row>
+                    <Col sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={headingStyle}>
+                        <SuccessAlert dismiss={() => {setSuccess(false)}}/>
+                    </Col>
+                </Row> : null
+            }
+            {
                 !isClicked ?
                     <Row>
                         <Col sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={textStyle}>
-                            Save the state of this window for later review. All tabs can be launched later in one go.
+                            Save current browser state.
                         </Col>
                     </Row> :
                     <Row>
                         <Col sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={textStyle}>
                             <Form>
                                 <Form.Group controlId="formNote">
-                                    <Form.Label>Note</Form.Label>
-                                    <Form.Control type="text" placeholder="Session note" ref={note} />
+                                    <Form.Label>Remark</Form.Label>
+                                    <Form.Control type="text" placeholder="Session Remark" maxLength={50} ref={note} />
                                 </Form.Group>
                                 <Form.Group controlId="dropdown">
                                     <Form.Label>Category</Form.Label>
@@ -210,7 +197,7 @@ const Popup = (props) => {
                                 {   isOther ?
                                     <Form.Group controlId="formCategory">
                                         <Form.Label>New Category</Form.Label>
-                                        <Form.Control placeholder="New Category" ref={categoryOther}/>
+                                        <Form.Control placeholder="New Category" maxLength={20} ref={categoryOther}/>
                                     </Form.Group> : null
                                 }
                             </Form>
@@ -247,7 +234,12 @@ const Popup = (props) => {
                                 Launcher&nbsp;&nbsp;
                             </Button>
                         </Col>
-                    </Row></> : <Row>&nbsp;</Row>
+                    </Row>
+                    </> : <Row>&nbsp;</Row>
+            }
+            {
+                isSuccess ?
+                    <Row>&nbsp;</Row> : null
             }
         </Container>
     );
