@@ -14,10 +14,17 @@ var hash = (value) => {
 var extract = () => {
     //alert("extract called")
     console.log(document.getSelection());
+    //let path = $(document.getSelection().anchorNode.parentNode).getPath();
+    // let text = $(document.getSelection().anchorNode.parentNode).contents().filter(function() {
+    //     return this.nodeType == Node.TEXT_NODE;
+    // }).text();
+
     let path = $(document.getSelection().anchorNode.parentNode).getPath();
-    let text = $(document.getSelection().anchorNode.parentNode).contents().filter(function() {
-        return this.nodeType == Node.TEXT_NODE;
-    }).text();
+    let text = $(document.getSelection().anchorNode.parentNode).text();
+
+    // console.log("path", path);
+    // console.log("element:", JSON.stringify($(path).offset()));
+    // $(path).css("background-color", "#d4ff32");
 
     let id = hash(text+path);
     return {
@@ -33,6 +40,7 @@ var setGetPath = () => {
         console.log("Selector script started !");
         jQuery.fn.extend({
             getPath: function( path ) {
+                alert("calledgetpath");
                 if ( typeof path == 'undefined' ) path = '';
                 if ( this.is('html') )
                     return 'html' + path;
@@ -50,8 +58,15 @@ var setGetPath = () => {
                         name += ':eq(' + siblings.index(realNode) + ')';
                     }
 
+
                     path = name + (path ? '>' + path : '');
                     node = parent;
+
+
+                    console.log("name:", name);
+                    console.log("path:", path);
+                    console.log("parent:", parent);
+
                 }
                 return path;
             }

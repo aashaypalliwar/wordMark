@@ -11,19 +11,32 @@ var hash = (value) => {
     return Math.abs(hash);
 }
 
-$(document).ready(function () {
+// $(document).ready(function () {
+window.onload = function() {
 
-    $('html, body').animate({ scrollTop: $(wordMarkInfo.path).offset().top - 300 }, 'slow', function () {
-        var currentText = $(wordMarkInfo.path).contents().filter(function() {
-            return this.nodeType === Node.TEXT_NODE;
-        }).text();
+    // alert(JSON.stringify(wordMarkInfo));
+    // alert(JSON.stringify($(wordMarkInfo.path).offset()));
+    // alert(JSON.stringify($(wordMarkInfo.path).getBoundingClientRect()));
+    // alert(JSON.stringify($(wordMarkInfo.path)));
+
+
+    var offset = $(wordMarkInfo.path).offset().top - 300;
+    if(offset < 0){
+        offset = 0;
+    }
+    $('html, body').animate({ scrollTop: offset }, 'slow', function () {
+        var currentText = $(wordMarkInfo.path).text();
         if(hash(currentText+wordMarkInfo.path) !== wordMarkInfo.id){
-            alert("The webpage you wordmarked might have been changed.");
+            alert("The text you wordMarked might have been changed.");
         }
-        // $(wordMarkInfo.path).effect("highlight", {}, 3000);
-        $(wordMarkInfo.path).css("background-color", "#d4ff32");
+
+        var outerContainer = wordMarkInfo.path.substring(0, wordMarkInfo.path.lastIndexOf('>'));
+        console.log(outerContainer);
+        // $(wordMarkInfo.path).closest("div").css("backgroundColor", "#e6ff87");
+        $(outerContainer).css("backgroundColor", "#e6ff87");
+        $(wordMarkInfo.path).css("backgroundColor", "#d4ff32");
     });
-});
+};
 
 
 

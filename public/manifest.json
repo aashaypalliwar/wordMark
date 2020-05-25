@@ -7,7 +7,7 @@
 
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "Open the popup"
+    "default_title": "WordMark"
   },
   "icons": {
     "512": "logo512.png"
@@ -17,7 +17,6 @@
     "scripts": ["background.js"]
   },
   "permissions": [
-    "unlimitedStorage",
     "tabs",
     "storage",
     "contextMenus",
