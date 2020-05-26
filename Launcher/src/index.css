@@ -28,9 +28,17 @@ th {
   padding-top: 0.25rem;
 }
 
-.delete {
+.deleteWM {
   display: inline-block !important;
   cursor: pointer;
-  padding-top: 0.25rem;
+  padding-top: 0.27rem;
+  /*float: right !important;*/
+}
+
+.deleteBS {
+  display: inline-block !important;
+  cursor: pointer;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
   /*float: right !important;*/
 }

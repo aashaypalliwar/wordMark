@@ -53,18 +53,21 @@ chrome.runtime.onMessage.addListener(
             //alert(JSON.stringify(request.wm));
             let { path, url, id } = request.wm;
             chrome.tabs.create({ url: url }, function (tab) {
-                chrome.tabs.executeScript(tab.id, { file: "jquery-3.5.1.min.js" }, function() {
-                    chrome.tabs.executeScript(tab.id, {
-                        code: "var wordMarkInfo = " + JSON.stringify(request.wm) + ";"
-                    }, function() {
-                        chrome.tabs.executeScript(tab.id, {file: 'highlightWordMark.js'});
+                //alert("created url");
+                // chrome.tabs.executeScript(tab.id, {file: "windowLoadScript.js"}, function () {
+                    //alert("window load scr");
+                    chrome.tabs.executeScript(tab.id, {file: "jquery-3.5.1.min.js"}, function () {
+                        //alert("loadedjq");
+                        chrome.tabs.executeScript(tab.id, {
+                            code: "var wordMarkInfo = " + JSON.stringify(request.wm) + ";"
+                        }, function () {
+                            //alert("going to hi");
+                            chrome.tabs.executeScript(tab.id, {file: 'highlightWordMark.js'});
+                        });
                     });
                 });
-            });
-
-
+            // });
         }
-
     });
 
 

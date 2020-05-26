@@ -12,41 +12,30 @@ var hash = (value) => {
 }
 
 var extract = () => {
-    //alert("extract called")
-    console.log(document.getSelection());
-    //let path = $(document.getSelection().anchorNode.parentNode).getPath();
-    // let text = $(document.getSelection().anchorNode.parentNode).contents().filter(function() {
-    //     return this.nodeType == Node.TEXT_NODE;
-    // }).text();
-
-    let path = $(document.getSelection().anchorNode.parentNode).getPath();
-    let text = $(document.getSelection().anchorNode.parentNode).text();
-
-    // console.log("path", path);
-    // console.log("element:", JSON.stringify($(path).offset()));
-
-    console.log(path.substring(0, path.lastIndexOf('>')))
-    $(path).css("background-color", "#d4ff32");
-
-    let id = hash(text+path);
+    var pathToSelection = $(document.getSelection().anchorNode.parentNode).getPath();
+    var offset = $(pathToSelection).offset() !== undefined ? $(pathToSelection).offset().top : 0;
+    var text = $(document.getSelection().anchorNode.parentNode).text();
+    if(text === "" || text === undefined || text === null){
+        text = "No extractable plain-text found in the selection."
+    }
+    var time = Date.now()
+    var id = hash(pathToSelection + text);
     return {
         id : id,
-        path: path,
+        path: pathToSelection + "|" + offset,
         text: text,
-        time: Date.now()
+        time: time
     }
 }
 
 var setGetPath = () => {
     if(typeof jQuery) { //checking if jQuery has been loaded before calling this script
-        console.log("Selector script started !");
         jQuery.fn.extend({
             getPath: function( path ) {
-                alert("calledgetpath");
                 if ( typeof path == 'undefined' ) path = '';
                 if ( this.is('html') )
                     return 'html' + path;
-                if (this.length != 1) throw 'Requires one element.';
+                if (this.length !== 1) throw 'Requires one element.';
                 var path, node = this;
                 while (node.length) {
                     var realNode = node[0], name = realNode.localName;
@@ -63,12 +52,6 @@ var setGetPath = () => {
 
                     path = name + (path ? '>' + path : '');
                     node = parent;
-
-
-                    console.log("name:", name);
-                    console.log("path:", path);
-                    console.log("parent:", parent);
-
                 }
                 return path;
             }
@@ -84,6 +67,6 @@ if(typeof jQuery !== undefined) {
     //alert("called")
     setGetPath();
 } else {
-    //alert("issue");
+    alert("Issue with the extension. Please reinstall");
 }
 

@@ -1,5 +1,6 @@
 /*global wordMarkInfo*/
 /*global $*/
+/*global windowHasLoaded*/
 
 var hash = (value) => {
     let hash = 0, i, chr;
@@ -11,33 +12,43 @@ var hash = (value) => {
     return Math.abs(hash);
 }
 
-// $(document).ready(function () {
-window.onload = function() {
-
-    // alert(JSON.stringify(wordMarkInfo));
-    // alert(JSON.stringify($(wordMarkInfo.path).offset()));
-    // alert(JSON.stringify($(wordMarkInfo.path).getBoundingClientRect()));
-    // alert(JSON.stringify($(wordMarkInfo.path)));
-
-
-    var offset = $(wordMarkInfo.path).offset().top - 300;
+var highlight = function() {
+    //alert("hilitscript")
+    var elementInformation = wordMarkInfo.path.split("|");
+    var oldOffset = elementInformation[1];
+    wordMarkInfo.path = elementInformation[0];
+    console.log(elementInformation);
+    console.log(oldOffset);
+    console.log(wordMarkInfo);
+    var offset = oldOffset - 300
+    if($(wordMarkInfo.path).offset() !== undefined){
+        offset = $(wordMarkInfo.path).offset().top - 300;
+    }
     if(offset < 0){
         offset = 0;
     }
+    console.log(offset)
+
     $('html, body').animate({ scrollTop: offset }, 'slow', function () {
         var currentText = $(wordMarkInfo.path).text();
-        if(hash(currentText+wordMarkInfo.path) !== wordMarkInfo.id){
+        if(currentText === "" || currentText === undefined || currentText === null){
+            currentText = "No extractable plain-text found in the selection."
+        }
+        if(hash(wordMarkInfo.path + currentText) !== wordMarkInfo.id){
             alert("The text you wordMarked might have been changed.");
         }
-
-        var outerContainer = wordMarkInfo.path.substring(0, wordMarkInfo.path.lastIndexOf('>'));
-        console.log(outerContainer);
-        // $(wordMarkInfo.path).closest("div").css("backgroundColor", "#e6ff87");
-        $(outerContainer).css("backgroundColor", "#e6ff87");
         $(wordMarkInfo.path).css("backgroundColor", "#d4ff32");
     });
 };
 
+window.onload = highlight;
 
+var navData = window.performance.getEntriesByType("navigation");
+if (navData.length > 0 && navData[0].loadEventEnd > 0)
+{
+    highlight();
+} else {
+    console.log('Document is not loaded');
+}
 
 

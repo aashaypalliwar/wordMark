@@ -65,6 +65,7 @@ const Popup = (props) => {
     }
 
     let submitHandler = () => {
+        // event.preventDefault();
         setSaving(true);
         chrome.storage.sync.get("temporary", function (obj) {
             if(obj.temporary === null || obj.temporary === undefined){
@@ -145,6 +146,7 @@ const Popup = (props) => {
                 note.current.value = "";
                 setOther(false);
                 setSuccess(true);
+                setTimeout(function(){ window.close() }, 2000);
             }
         })
     }
@@ -162,10 +164,10 @@ const Popup = (props) => {
             </Row>
             <Row>
                 <Col sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}} style={textStyle}>
-                    <Form>
+                    <Form onSubmit={submitHandler}>
                         <Form.Group controlId="formRemark">
                             <Form.Label>Remark</Form.Label>
-                            <Form.Control type="text" placeholder="WordMark Remark" maxLength={50} ref={note} />
+                            <Form.Control autoFocus type="text" placeholder="WordMark Remark" maxLength={50} ref={note} />
                         </Form.Group>
                         <Form.Group controlId="dropdown">
                             <Form.Label>Category</Form.Label>
@@ -191,7 +193,7 @@ const Popup = (props) => {
             </Row>
             <Row>
                 <Col sm={ {span: 10, offset:1}} xs={ {span: 10, offset:1}}>
-                    <Button variant="primary" outline-primary style={{ marginTop: "0.6rem", marginRight: "1rem"}} onClick={submitHandler} disabled={isSaving}>
+                    <Button variant="primary" outline-primary style={{ marginTop: "0.6rem", marginRight: "1rem"}}  onClick={submitHandler}  disabled={isSaving}>
                         Save
                     </Button>
 

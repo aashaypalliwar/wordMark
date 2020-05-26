@@ -1,6 +1,14 @@
 /*global chrome*/
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {categoryStyle, whiteStyle, descriptionStyle, textStyle, deleteStyle, linkStyle} from "../containers/Launcher/LauncherStyles";
+import {
+    categoryStyle,
+    whiteStyle,
+    bsDescriptionStyle,
+    textStyle,
+    deleteStyle,
+    linkStyle,
+    bsWhiteStyle
+} from "../containers/Launcher/LauncherStyles";
 import React, {useState} from "react";
 import PopUpAlert from "./PopUpAlert";
 import { clone } from "ramda"
@@ -65,12 +73,12 @@ const LauncherBSRow = (props) => {
         // showRow ?
         <>
             <tr>
-                <td style={descriptionStyle}>{(props.bs.note === "" || props.bs.note === undefined)  ? "-" : props.bs.note}</td>
-                <td style={descriptionStyle}>{(new Date(props.bs.date)).toISOString().substring(0,10)}</td>
-                <td style={whiteStyle} onClick={viewHandler}>Visit</td>
+                <td style={bsDescriptionStyle}>{(props.bs.note === "" || props.bs.note === undefined)  ? "-" : props.bs.note}</td>
+                <td style={bsDescriptionStyle}>{(new Date(props.bs.date)).toISOString().substring(0,10)}</td>
+                <td style={bsWhiteStyle} onClick={viewHandler}>Visit</td>
                 {/*<td style={deleteStyle} onClick={triggerDeleteModal}>Delete</td>*/}
                 <td onClick={triggerDeleteModal} style={{"textAlign" : "center", "padding" : "0" }}>
-                    <svg className="delete" width="1rem" height="1rem" viewBox="0 0 1024 1024" onClick={triggerDeleteModal}>
+                    <svg className="deleteBS" width="1rem" height="1rem" viewBox="0 0 1024 1024" onClick={triggerDeleteModal}>
                         <path d="M192 1024h640l64-704h-768zM640 128v-128h-256v128h-320v192l64-64h768l64 64v-192h-320zM576 128h-128v-64h128v64z"/>
                     </svg>
                 </td>

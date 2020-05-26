@@ -92,8 +92,19 @@ export const HeadLinkStyle = {
 
 export const descriptionStyle = {
     fontSize:"1rem",
-    paddingLeft: "0.7rem",
-    paddingRight: "0.7rem",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
+    paddingTop: "0.5rem",
+    paddingBottom: "0.5rem",
+    marginTop: 0,
+    marginBottom: 0,
+    textAlign:"center"
+}
+
+export const bsDescriptionStyle = {
+    fontSize:"1rem",
+    paddingLeft: "0",
+    paddingRight: "0",
     paddingTop: "0.1rem",
     paddingBottom: "0.1rem",
     marginTop: 0,
@@ -105,8 +116,8 @@ export const wmTextStyle = {
     fontSize:"1rem",
     paddingLeft: "1rem",
     paddingRight: "1rem",
-    paddingTop: "1rem",
-    paddingBottom: "1rem",
+    paddingTop: "0.5rem",
+    paddingBottom: "0.5rem",
     marginTop: 0,
     marginBottom: 0,
     textAlign: "justify"
@@ -126,6 +137,19 @@ export const deleteStyle = {
 }
 
 export const whiteStyle = {
+    fontSize:"1rem",
+    paddingLeft: "0",
+    paddingRight: "0",
+    paddingTop: "0.5rem",
+    paddingBottom: "0.5rem",
+    marginTop: 0,
+    marginBottom: 0,
+    textAlign:"center",
+    color: "green",
+    cursor: "pointer"
+}
+
+export const bsWhiteStyle = {
     fontSize:"1rem",
     paddingLeft: "0",
     paddingRight: "0",

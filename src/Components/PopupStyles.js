@@ -5,7 +5,7 @@ export const tableStyle = {
 
 export const headingStyle = {
     fontSize:"1.4rem",
-    paddingBottom: "0",
+    paddingBottom: "0.2rem",
     paddingLeft: "0",
     paddingRight: "0",
     textAlign:"center",

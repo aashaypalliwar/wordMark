@@ -127,6 +127,7 @@ const Popup = (props) => {
                             setSaving(false);
                             setClicked(false);
                             setSuccess(true);
+                            setTimeout(function(){ setSuccess(false); }, 3000);
                         });
 
                     });
@@ -154,7 +155,7 @@ const Popup = (props) => {
                             marginTop: 0,
                             marginBottom: 0,
                             backgroundColor: "#07285c",
-                            height: 2
+                            height: 1
                         }}
                     />
                 </Col>
@@ -179,7 +180,7 @@ const Popup = (props) => {
                             <Form>
                                 <Form.Group controlId="formNote">
                                     <Form.Label>Remark</Form.Label>
-                                    <Form.Control type="text" placeholder="Session Remark" maxLength={50} ref={note} />
+                                    <Form.Control autoFocus type="text" placeholder="Session Remark" maxLength={50} ref={note} />
                                 </Form.Group>
                                 <Form.Group controlId="dropdown">
                                     <Form.Label>Category</Form.Label>
