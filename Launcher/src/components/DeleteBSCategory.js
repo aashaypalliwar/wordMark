@@ -1,6 +1,4 @@
 /*global chrome*/
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {categoryStyle, whiteStyle, descriptionStyle, textStyle, deleteStyle, linkStyle} from "../containers/Launcher/LauncherStyles";
 import React, {useState} from "react";
 import { clone } from "ramda"
 import PopUpAlert from "./PopUpAlert";
@@ -21,23 +19,12 @@ const DeleteBSCategory = (props) => {
         alert("view");
     }
 
-    /*
-    * category
-    * set
-    * appState
-    * */
-
     let deleteHandler = () => {
-        //alert("delete");
         setLoading(true);
 
         let bsObj = clone(props.appState.browserStateInfo);
         let bsCategories = clone(props.appState.bsCategories);
         bsObj[props.category] = undefined;
-        // alert(JSON.stringify(bsObj));
-        // alert(JSON.stringify(bss));
-        // alert(JSON.stringify(props.bs));
-        // alert(JSON.stringify(props.appState));
 
         chrome.storage.sync.set({session : bsObj }, () => {
             if(props.category !== "General"){
@@ -84,4 +71,3 @@ const DeleteBSCategory = (props) => {
 }
 
 export default DeleteBSCategory;
-

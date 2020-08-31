@@ -65,14 +65,12 @@ const Popup = (props) => {
     }
 
     let submitHandler = () => {
-        // event.preventDefault();
         setSaving(true);
         chrome.storage.sync.get("temporary", function (obj) {
             if(obj.temporary === null || obj.temporary === undefined){
                 window.close();
             }else{
-                //alert("line54");
-                //alert(JSON.stringify(obj));
+
                 let { id, path, text, url, time } = obj.temporary;
                 let sessionNote = note.current.value;
                 let sessionCategory;
@@ -81,9 +79,7 @@ const Popup = (props) => {
                 }
                 else{
                     sessionCategory = getRefValue(categoryOther);
-                    //alert(sessionCategory);
                 }
-                //alert("line65");
 
                 let finalEntry = {
                     id: id,
@@ -95,24 +91,13 @@ const Popup = (props) => {
                     note: sessionNote
                 }
 
-                //alert(JSON.stringify(finalEntry));
-
 
                 chrome.storage.sync.get("wordMark", function (wm) {
                     if(wm.wordMark === null || wm.wordMark === undefined){
-                        //alert("line89")
-                        // alert(JSON.stringify({
-                        //     wordMark : {
-                        //         [sessionCategory] : [finalEntry]
-                        //     }
-                        // }))
                         chrome.storage.sync.set({ wordMark: {
                                 [sessionCategory] : [finalEntry]
                             }}, function () {
-                            //alert("first save");
                             if(isOther){
-                                //alert("line106 inside isother printing categories");
-                                //alert(JSON.stringify(categories));
                                 storeNewCategory(sessionCategory);
                             }
                         })
@@ -122,19 +107,12 @@ const Popup = (props) => {
                         if (newObj[sessionCategory] === null || newObj[sessionCategory] === undefined) {
                             newObj[sessionCategory] = [];
                         }
-                        //alert("line92");
-                        //alert(JSON.stringify(newObj));
 
                         newObj[sessionCategory] = [...newObj[sessionCategory], finalEntry];
-                        //alert("line96");
-                        //alert(JSON.stringify(newObj));
                         chrome.storage.sync.set({
                             wordMark: newObj
                         }, function () {
-                            //alert("first not save");
                             if(isOther){
-                                //alert("line106 inside isother printing categories");
-                                //alert(JSON.stringify(categories));
                                 storeNewCategory(sessionCategory);
                             }
                         })

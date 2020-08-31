@@ -1,6 +1,5 @@
 /*global chrome*/
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {categoryStyle, wmTextStyle, whiteStyle, descriptionStyle, textStyle, deleteStyle, linkStyle} from "../containers/Launcher/LauncherStyles";
+import { wmTextStyle, whiteStyle, descriptionStyle} from "../containers/Launcher/LauncherStyles";
 import React, {useState} from "react";
 import { clone } from "ramda"
 import PopUpAlert from "./PopUpAlert";
@@ -24,7 +23,6 @@ const LauncherWMRow = (props) => {
         });
     }
     let deleteHandler = () => {
-        //alert("delete");
         setLoading(true);
 
         let wms = clone(props.wms);
@@ -35,10 +33,6 @@ const LauncherWMRow = (props) => {
         let wmObj = clone(props.appState.wordMarkInfo);
         let wmCategories = clone(props.appState.wmCategories);
         wmObj[props.wm.category] = wms;
-        //alert(JSON.stringify(wmObj));
-        //alert(JSON.stringify(wms));
-        //alert(JSON.stringify(props.wm));
-        //alert(JSON.stringify(props.appState));
 
         chrome.storage.sync.set({wordMark : wmObj }, () => {
             if(props.wm.category !== "General" && JSON.stringify(wms) === "[]"){
@@ -94,4 +88,3 @@ const LauncherWMRow = (props) => {
 }
 
 export default LauncherWMRow;
-

@@ -1,5 +1,5 @@
 import {Button} from "react-bootstrap";
-import React, {useState} from "react";
+import React from "react";
 import Modal from "react-bootstrap/Modal";
 
 const PopUpAlert = (props) => {

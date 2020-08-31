@@ -1,12 +1,6 @@
 /*global chrome*/
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {
-    categoryStyle,
-    whiteStyle,
     bsDescriptionStyle,
-    textStyle,
-    deleteStyle,
-    linkStyle,
     bsWhiteStyle
 } from "../containers/Launcher/LauncherStyles";
 import React, {useState} from "react";
@@ -33,7 +27,6 @@ const LauncherBSRow = (props) => {
     }
 
     let deleteHandler = () => {
-        //alert("delete");
         setLoading(true);
 
         let bss = clone(props.bss);
@@ -44,10 +37,6 @@ const LauncherBSRow = (props) => {
         let sessionObj = clone(props.appState.browserStateInfo);
         let bsCategories = clone(props.appState.bsCategories);
         sessionObj[props.bs.category] = bss;
-        //alert(JSON.stringify(sessionObj));
-        //alert(JSON.stringify(bss));
-        //alert(JSON.stringify(props.bs));
-        //alert(JSON.stringify(props.appState));
 
         chrome.storage.sync.set({session : sessionObj }, () => {
             if(props.bs.category !== "General" && JSON.stringify(bss) === "[]"){
@@ -70,7 +59,6 @@ const LauncherBSRow = (props) => {
     }
 
     return (
-        // showRow ?
         <>
             <tr>
                 <td style={bsDescriptionStyle}>{(props.bs.note === "" || props.bs.note === undefined)  ? "-" : props.bs.note}</td>
